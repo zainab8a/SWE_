@@ -17,7 +17,7 @@ const NewClientRequests = () => {
     }
   
     try {
-      const response = await axios.post('http://localhost:8080/api/coaching/assign', {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/coaching/assign`, {
         trainerId: trainer._id,
         clientEmail: email,
       });

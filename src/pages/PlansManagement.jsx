@@ -9,8 +9,8 @@ const PlansManagement = () => {
     const fetchPlans = async () => {
       try {
         const [mealRes, workoutRes] = await Promise.all([
-          axios.get('http://localhost:8080/api/weeklymeals'),
-          axios.get('http://localhost:8080/api/weeklyworkouts')
+          axios.get(`${process.env.REACT_APP_API_URL}/api/weeklymeals`),
+          axios.get(`${process.env.REACT_APP_API_URL}/api/weeklyworkouts`)
         ]);
 
         const meals = mealRes.data.map(plan => ({ ...plan, type: 'Meal' }));
@@ -30,8 +30,8 @@ const PlansManagement = () => {
       try {
         const endpoint =
           type === 'Meal'
-            ? `http://localhost:8080/api/weeklymeals/${id}`
-            : `http://localhost:8080/api/weeklyworkouts/${id}`;
+            ? `${process.env.REACT_APP_API_URL}/api/weeklymeals/${id}`
+            : `${process.env.REACT_APP_API_URL}/api/weeklyworkouts/${id}`;
 
         await axios.delete(endpoint);
         setPlans(plans.filter(plan => plan._id !== id));

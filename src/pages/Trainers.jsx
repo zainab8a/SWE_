@@ -8,7 +8,7 @@ const Trainers = () => {
   const [trainers, setTrainers] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/api/auth/trainers')
+    axios.get(`${process.env.REACT_APP_API_URL}/api/auth/trainers`)
       .then(res => setTrainers(res.data))
       .catch(err => console.error('Failed to fetch trainers:', err));
   }, []);

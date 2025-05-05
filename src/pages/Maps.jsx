@@ -20,7 +20,7 @@ const Maps = () => {
 
   const fetchRoutes = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/api/maps');
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/maps`);
       setRoutes(res.data);
     } catch (err) {
       console.error('Failed to fetch maps:', err);
@@ -34,7 +34,7 @@ const Maps = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:8080/api/maps', form);
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/maps`, form);
       setRoutes([res.data]); 
       setForm({ name: '', description: '', distance: '', track: '' });
     } catch (err) {
@@ -46,7 +46,7 @@ const Maps = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Delete this route?')) {
       try {
-        await axios.delete(`http://localhost:8080/api/maps/${id}`);
+        await axios.delete(`${process.env.REACT_APP_API_URL}/api/maps/${id}`);
         setRoutes([]);
         setEditingId(null);
       } catch (err) {
@@ -67,7 +67,7 @@ const Maps = () => {
 
   const handleEditSubmit = async () => {
     try {
-      const res = await axios.put(`http://localhost:8080/api/maps/${editingId}`, editForm);
+      const res = await axios.put(`${process.env.REACT_APP_API_URL}/api/maps/${editingId}`, editForm);
       setRoutes([res.data]);
       setEditingId(null);
     } catch (err) {

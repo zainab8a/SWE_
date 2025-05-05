@@ -17,7 +17,7 @@ const CommunityParticipation = () => {
       return;
     }
 
-    axios.get(`http://localhost:8080/api/communities/user/${userId}/challenges`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/communities/user/${userId}/challenges`)
       .then(res => {
         setChallenges(res.data || []);
       })
@@ -36,7 +36,7 @@ const CommunityParticipation = () => {
 
     const challenge = challenges[selected];
 
-    axios.post(`http://localhost:8080/api/communities/user/${userId}/join-challenge`, {
+    axios.post(`${process.env.REACT_APP_API_URL}/api/communities/user/${userId}/join-challenge`, {
       title: challenge.title
     })
     .then(() => {

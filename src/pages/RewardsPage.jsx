@@ -10,7 +10,7 @@ const RewardsPage = () => {
 
   // Fetch communities
   useEffect(() => {
-    axios.get('http://localhost:8080/api/communities')
+    axios.get(`${process.env.REACT_APP_API_URL}/api/communities`)
       .then(res => setCommunities(res.data))
       .catch(err => console.error('Failed to load communities:', err));
   }, []);
@@ -18,7 +18,7 @@ const RewardsPage = () => {
   // Load members for selected community
   useEffect(() => {
     if (!selectedCommunityId) return;
-    axios.get(`http://localhost:8080/api/communities`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/communities`)
       .then(res => {
         const community = res.data.find(c => c._id === selectedCommunityId);
         setMembers(community?.members || []);

@@ -25,7 +25,7 @@ const AddMeal = () => {
     }
 
     try {
-      const res = await fetch('http://localhost:8080/api/meals', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/meals`, {
         method: 'POST',
         body: formData,
       });

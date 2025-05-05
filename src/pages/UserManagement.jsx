@@ -15,7 +15,7 @@ const UserManagement = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/auth/users');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/auth/users`);
         setUsers(response.data);
       } catch (error) {
         console.error('Error fetching users:', error);
@@ -28,7 +28,7 @@ const UserManagement = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this user?')) {
       try {
-        await axios.delete(`http://localhost:8080/api/auth/users/${id}`);
+        await axios.delete(`${process.env.REACT_APP_API_URL}/api/auth/users/${id}`);
         setUsers(users.filter(user => user._id !== id));
         alert('User deleted successfully');
       } catch (error) {
@@ -55,7 +55,7 @@ const UserManagement = () => {
         ...editForm,
       };
 
-      await axios.put(`http://localhost:8080/api/auth/users/${editingUser._id}`, updatedUser);
+      await axios.put(`${process.env.REACT_APP_API_URL}/api/auth/users/${editingUser._id}`, updatedUser);
 
       setUsers(users.map(u => (u._id === editingUser._id ? updatedUser : u)));
       setEditingUser(null);

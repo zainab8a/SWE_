@@ -23,7 +23,7 @@ const EditPlan = () => {
   useEffect(() => {
     const fetchPlan = async () => {
       try {
-        const res = await axios.get(`http://localhost:8080/api/plans/${id}`);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/plans/${id}`);
         const data = res.data;
         setForm({
           name: data.name || '',
@@ -63,7 +63,7 @@ const EditPlan = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:8080/api/plans/${id}`, form);
+      await axios.put(`${process.env.REACT_APP_API_URL}/api/plans/${id}`, form);
       alert('Plan updated successfully!');
       navigate('/plans');
     } catch (error) {

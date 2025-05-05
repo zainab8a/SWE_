@@ -53,7 +53,7 @@ const TrainerPersonalInfo = () => {
 
       console.log("sending payload to backend:", payload);
 
-      const response = await axios.post('http://localhost:8080/api/auth/register', payload);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/register`, payload);
 
       console.log('Trainer registered:', response.data);
       alert('Trainer registered successfully!');

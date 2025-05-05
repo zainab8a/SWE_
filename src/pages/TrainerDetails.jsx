@@ -11,12 +11,12 @@ const TrainerDetails = () => {
 
   useEffect(() => {
     // Fetch trainer info
-    axios.get(`http://localhost:8080/api/users/trainer/${id}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/users/trainer/${id}`)
       .then(res => setTrainer(res.data))
       .catch(err => console.error('Trainer fetch error:', err));
 
     // Fetch sessions for trainer
-    axios.get(`http://localhost:8080/api/sessions/trainer/${id}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/sessions/trainer/${id}`)
       .then(res => setSessions(res.data))
       .catch(err => console.error('Session fetch error:', err));
   }, [id]);
@@ -29,7 +29,7 @@ const TrainerDetails = () => {
     }
 
     try {
-      await axios.post(`http://localhost:8080/api/coaching/assign`, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/coaching/assign`, {
         trainerId: id,
         clientEmail: user.email
       });
