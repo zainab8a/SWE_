@@ -17,9 +17,9 @@ const ReportSelection = () => {
   const fetchData = async () => {
     try {
       let endpoint = '';
-      if (reportType === 'user') endpoint = '/api/auth/report/users';
-      else if (reportType === 'community') endpoint = '/api/communities/report/communities';
-      else if (reportType === 'trainer') endpoint = '/api/auth/report/trainers';
+      if (reportType === 'user') endpoint = 'auth/report/users';
+      else if (reportType === 'community') endpoint = 'communities/report/communities';
+      else if (reportType === 'trainer') endpoint = 'auth/report/trainers';
 
       const res = await axios.get(`${process.env.REACT_APP_API_URL}${endpoint}`);
       setData(res.data);

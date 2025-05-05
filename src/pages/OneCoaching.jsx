@@ -10,7 +10,7 @@ const OneCoaching = () => {
 
   const fetchClients = async () => {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/coaching/${trainer._id}/clients`);
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}coaching/${trainer._id}/clients`);
       setClients(res.data);
     } catch (err) {
       console.error('Error loading clients:', err);
@@ -23,7 +23,7 @@ const OneCoaching = () => {
 
   const handleRemove = async (clientId) => {
     try {
-      await axios.delete(`${process.env.REACT_APP_API_URL}/api/coaching/${trainer._id}/${clientId}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}coaching/${trainer._id}/${clientId}`);
       setClients(prev => prev.filter(c => c._id !== clientId));
     } catch (err) {
       console.error('Failed to remove client:', err);

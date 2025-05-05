@@ -17,7 +17,7 @@ const ForgetPassword = () => {
     }
 
     try {
-      const res = await axios.put(`${process.env.REACT_APP_API_URL}/api/auth/reset-password`, {
+      const res = await axios.put(`${process.env.REACT_APP_API_URL}auth/reset-password`, {
         email,
         oldPassword,
         newPassword,

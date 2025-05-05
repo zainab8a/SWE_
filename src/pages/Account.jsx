@@ -15,7 +15,7 @@ const Account = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/users/${userId}`);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}users/${userId}`);
         setUser(res.data);
       } catch (err) {
         console.error('Failed to fetch user:', err);
@@ -28,7 +28,7 @@ const Account = () => {
   useEffect(() => {
     if (!user || user.role !== 'user') return;
 
-    axios.get(`${process.env.REACT_APP_API_URL}/api/communities`)
+    axios.get(`${process.env.REACT_APP_API_URL}communities`)
       .then(res => {
         const allCommunities = res.data;
 
@@ -51,7 +51,7 @@ const Account = () => {
     if (!selectedCommunity) return;
 
     try {
-      await axios.put(`${process.env.REACT_APP_API_URL}/api/communities/${selectedCommunity}/add-member`, {
+      await axios.put(`${process.env.REACT_APP_API_URL}communities/${selectedCommunity}/add-member`, {
         email: user.email
       });
       alert('Joined successfully!');
