@@ -25,7 +25,10 @@ const coachingRoutes = require('./routes/coachingRoutes');
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: "https://teal-concha-d94713.netlify.app", 
+  credentials: true
+}));
 app.use(express.json());
 
 // Serve static files (images from uploads folder)
