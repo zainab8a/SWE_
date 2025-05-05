@@ -18,37 +18,37 @@ const ReportDetail = () => {
   return (
     <Layout pageTitle="Report Details">
       <div className="max-w-2xl mx-auto bg-[#E9F5EC] p-6 rounded-xl shadow mt-6">
-        <h2 className="text-2xl font-bold mb-4 text-[#2D6A4F]">Report for {data.name}</h2>
+        <h2 className="text-2xl font-bold mb-4 text-[#2D6A4F]">Report Details</h2>
 
         <div className="space-y-3 text-[#2D6A4F]">
-          {/* USER REPORT */}
           {reportType === 'user' && (
             <>
-              <p><strong>Total Steps:</strong> {data.steps}</p>
-              <p><strong>Challenges Joined:</strong> {data.challenges}</p>
-              <p><strong>Calories Burned:</strong> {data.calories}</p>
-              <p><strong>Active Days:</strong> {data.activeDays}</p>
-              <p><strong>Goals Achieved:</strong> {data.goals}</p>
-              <p><strong>Average Progress:</strong> {data.progress}%</p>
+              <p><strong>Name:</strong> {data.name}</p>
+              <p><strong>Email:</strong> {data.email}</p>
+              <p><strong>Program Selected:</strong> {data.programSelected || 'N/A'}</p>
+              <p><strong>Level:</strong> {data.level || 'N/A'}</p>
+              <p><strong>In Community:</strong> {data.isInCommunity ? 'Yes' : 'No'}</p>
+              <p><strong>Has Challenge:</strong> {data.hasChallenge ? 'Yes' : 'No'}</p>
+              <p><strong>Has One-on-One Coaching:</strong> {data.hasCoaching ? 'Yes' : 'No'}</p>
             </>
           )}
 
-          {/* TRAINER REPORT */}
           {reportType === 'trainer' && (
             <>
-              <p><strong>Clients:</strong> {data.clients}</p>
-              <p><strong>Plans Created:</strong> {data.plans}</p>
-              <p><strong>Training Sessions:</strong> {data.sessions}</p>
-              <p><strong>Average Client Progress:</strong> {data.avgProgress}%</p>
-              <p><strong>Rating:</strong> {data.rating} / 5</p>
+              <p><strong>Name:</strong> {data.name}</p>
+              <p><strong>Email:</strong> {data.email}</p>
+              <p><strong>Focus:</strong> {data.focus || 'N/A'}</p>
+              <p><strong>Trainer Level:</strong> {data.trainerLevel || 'N/A'}</p>
+              <p><strong>Trainer Requests:</strong> {data.trainerRequests?.length || 0}</p>
+              <p><strong>Has Sessions:</strong> {data.hasSessions ? 'Yes' : 'No'}</p>
+              <p><strong>Has One-on-One Coaching:</strong> {data.hasCoaching ? 'Yes' : 'No'}</p>
+              <p><strong>Trainer in a Community:</strong> {data.isCommunityTrainer ? 'Yes' : 'No'}</p>
             </>
           )}
 
-          {/* COMMUNITY REPORT */}
           {reportType === 'community' && (
             <>
               <p><strong>Community Name:</strong> {data.name}</p>
-
               <p><strong>Trainer:</strong> {data.trainer?.name || 'N/A'}</p>
 
               <div>
@@ -70,8 +70,8 @@ const ReportDetail = () => {
                   {data.challenges && data.challenges.length > 0 ? (
                     data.challenges.map((challenge, index) => (
                       <li key={index}>
-                        <strong>Title:</strong> {challenge.title} <br />
-                        <strong>Description:</strong> {challenge.description} <br />
+                        <strong>Title:</strong> {challenge.title}<br />
+                        <strong>Description:</strong> {challenge.description}<br />
                         <strong>Duration:</strong> {challenge.duration}
                       </li>
                     ))
@@ -84,7 +84,6 @@ const ReportDetail = () => {
           )}
         </div>
 
-        {/* Action Buttons */}
         <div className="flex gap-4 mt-6">
           <button
             onClick={() => navigate(-1)}

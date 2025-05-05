@@ -4,22 +4,20 @@ import axios from 'axios';
 
 const ForgetPassword = () => {
   const [email, setEmail] = useState('');
-  const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const navigate = useNavigate();
 
   const handleReset = async (e) => {
     e.preventDefault();
 
-    if (!email || !oldPassword || !newPassword) {
+    if (!email || !newPassword) {
       alert('Please fill in all fields.');
       return;
     }
 
     try {
-      const res = await axios.put(`${process.env.REACT_APP_API_URL}/auth/reset-password`, {
+      const res = await axios.put(`${process.env.REACT_APP_API_URL}/auth/forget-password`, {
         email,
-        oldPassword,
         newPassword,
       });
 
@@ -50,13 +48,7 @@ const ForgetPassword = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none"
-            />
-            <input
-              type="password"
-              placeholder="Old Password"
-              value={oldPassword}
-              onChange={(e) => setOldPassword(e.target.value)}
-              className="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none"
+              required
             />
             <input
               type="password"
@@ -64,6 +56,7 @@ const ForgetPassword = () => {
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
               className="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none"
+              required
             />
             <button
               type="submit"

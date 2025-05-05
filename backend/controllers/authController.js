@@ -182,14 +182,11 @@ const getTrainerById = async (req, res) => {
 
 // PUT /api/users/reset-password
 const resetPassword = async (req, res) => {
-  const { email, oldPassword, newPassword } = req.body;
+  const { email, newPassword } = req.body;
 
   try {
     const user = await User.findOne({ email });
     if (!user) return res.status(404).json({ message: 'User not found' });
-
-    const isMatch = await bcrypt.compare(oldPassword, user.password);
-    if (!isMatch) return res.status(401).json({ message: 'Old password is incorrect' });
 
     const hashedNewPassword = await bcrypt.hash(newPassword, 10);
     user.password = hashedNewPassword;
@@ -201,6 +198,7 @@ const resetPassword = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+
 
 const assignTrainer = async (req, res) => {
   const { trainerId, clientEmail } = req.body;

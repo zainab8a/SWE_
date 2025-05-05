@@ -21,7 +21,7 @@ const ReportSelection = () => {
       else if (reportType === 'community') endpoint = 'communities/report/communities';
       else if (reportType === 'trainer') endpoint = 'auth/report/trainers';
 
-      const res = await axios.get(`${process.env.REACT_APP_API_URL}${endpoint}`);
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/${endpoint}`);
       setData(res.data);
     } catch (error) {
       console.error('Fetch report data error:', error.message);
