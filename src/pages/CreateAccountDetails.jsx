@@ -206,3 +206,4 @@ const CreateAccountDetails = () => {
 };
 
 export default CreateAccountDetails;
+

@@ -8,7 +8,7 @@ const Meal = () => {
 
   useEffect(() => {
     if (user?.programSelected) {
-      axios.get(`${process.env.REACT_APP_API_URL}weeklymeals/${encodeURIComponent(user.programSelected)}`)
+      axios.get(`${process.env.REACT_APP_API_URL}/weeklymeals/${encodeURIComponent(user.programSelected)}`)
       .then(res => setMealPlan(res.data))
         .catch(err => console.error('Meal fetch error:', err));
     }

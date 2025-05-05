@@ -16,8 +16,8 @@ const CommunityManagement = () => {
 
   const fetchData = async () => {
     const [res1, res2] = await Promise.all([
-      axios.get(`${process.env.REACT_APP_API_URL}communities`),
-      axios.get(`${process.env.REACT_APP_API_URL}auth/trainers`)
+      axios.get(`${process.env.REACT_APP_API_URL}/communities`),
+      axios.get(`${process.env.REACT_APP_API_URL}/auth/trainers`)
     ]);
     setCommunities(res1.data);
     setTrainers(res2.data);
@@ -28,14 +28,14 @@ const CommunityManagement = () => {
       return alert('Please fill all fields.');
     }
 
-    const res = await axios.post(`${process.env.REACT_APP_API_URL}communities`, newCommunity);
+    const res = await axios.post(`${process.env.REACT_APP_API_URL}/communities`, newCommunity);
     setCommunities([...communities, res.data]);
     setNewCommunity({ name: '', trainer: '' });
   };
 
   const handleDeleteCommunity = async (id) => {
     if (!window.confirm('Are you sure you want to delete this community?')) return;
-    await axios.delete(`${process.env.REACT_APP_API_URL}communities/${id}`);
+    await axios.delete(`${process.env.REACT_APP_API_URL}/communities/${id}`);
     setCommunities(communities.filter(c => c._id !== id));
   };
 
@@ -46,7 +46,7 @@ const CommunityManagement = () => {
     }
   
     try {
-      const res = await axios.put(`${process.env.REACT_APP_API_URL}communities/${selectedCommunity._id}/add-member`, {
+      const res = await axios.put(`${process.env.REACT_APP_API_URL}/communities/${selectedCommunity._id}/add-member`, {
         email: memberEmail.trim()
       });
   
@@ -60,21 +60,21 @@ const CommunityManagement = () => {
   };
 
   const handleRemoveMember = async (userId) => {
-    const res = await axios.put(`${process.env.REACT_APP_API_URL}communities/${selectedCommunity._id}/remove-member`, { userId });
+    const res = await axios.put(`${process.env.REACT_APP_API_URL}/communities/${selectedCommunity._id}/remove-member`, { userId });
     setSelectedCommunity(res.data);
     setCommunities(communities.map(c => c._id === res.data._id ? res.data : c));
   };
 
   const handleAddChallenge = async () => {
     if (!challenge.title  ||  !challenge.description || !challenge.duration) return;
-    const res = await axios.put(`${process.env.REACT_APP_API_URL}communities/${selectedCommunity._id}/add-challenge`, challenge);
+    const res = await axios.put(`${process.env.REACT_APP_API_URL}/communities/${selectedCommunity._id}/add-challenge`, challenge);
     setSelectedCommunity(res.data);
     setCommunities(communities.map(c => c._id === res.data._id ? res.data : c));
     setChallenge({ title: '', description: '', duration: '' });
   };
 
   const handleRemoveChallenge = async (title) => {
-    const res = await axios.put(`${process.env.REACT_APP_API_URL}communities/${selectedCommunity._id}/remove-challenge`, { title });
+    const res = await axios.put(`${process.env.REACT_APP_API_URL}/communities/${selectedCommunity._id}/remove-challenge`, { title });
     setSelectedCommunity(res.data);
     setCommunities(communities.map(c => c._id === res.data._id ? res.data : c));
   };

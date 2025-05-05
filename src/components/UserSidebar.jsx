@@ -24,7 +24,7 @@ const UserSidebar = () => {
     const userId = localStorage.getItem('userId');
     if (userId) {
       axios
-        .get(`${process.env.REACT_APP_API_URL}/api/users/${userId}`)
+        .get(`${process.env.REACT_APP_API_URL}/users/${userId}`)
         .then((res) => {
           const capitalizeFirstLetter = (str) =>
             str.charAt(0).toUpperCase() + str.slice(1);

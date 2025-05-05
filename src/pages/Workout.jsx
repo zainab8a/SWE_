@@ -8,7 +8,7 @@ const Workout = () => {
 
   useEffect(() => {
     if (user?.programSelected) {
-      axios.get(`${process.env.REACT_APP_API_URL}weeklyworkouts/${encodeURIComponent(user.programSelected)}`)
+      axios.get(`${process.env.REACT_APP_API_URL}/weeklyworkouts/${encodeURIComponent(user.programSelected)}`)
         .then(res => setWorkoutPlan(res.data))
         .catch(err => console.error('Workout fetch error:', err));
     }

@@ -9,7 +9,7 @@ const MyCoaching = () => {
   useEffect(() => {
     if (!user?._id) return;
 
-    axios.get(`${process.env.REACT_APP_API_URL}coaching/client/${user._id}/trainer`)
+    axios.get(`${process.env.REACT_APP_API_URL}/coaching/client/${user._id}/trainer`)
       .then(res => setTrainer(res.data))
       .catch(err => console.error('No coach found:', err));
   }, [user]);

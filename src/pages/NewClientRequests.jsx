@@ -17,7 +17,7 @@ const NewClientRequests = () => {
     }
   
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}coaching/assign`, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/coaching/assign`, {
         trainerId: trainer._id,
         clientEmail: email,
       });

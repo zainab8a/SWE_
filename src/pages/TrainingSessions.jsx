@@ -9,7 +9,7 @@ const TrainingSessions = () => {
   const trainer = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}sessions`)
+    fetch(`${process.env.REACT_APP_API_URL}/sessions`)
       .then(res => res.json())
       .then(data => {
         // Filter sessions by trainer ID

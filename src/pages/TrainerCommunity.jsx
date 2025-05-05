@@ -15,7 +15,7 @@ const TrainerCommunity = () => {
   useEffect(() => {
     if (!trainer?._id) return;
 
-    axios.get(`${process.env.REACT_APP_API_URL}communities`)
+    axios.get(`${process.env.REACT_APP_API_URL}/communities`)
       .then((res) => {
         const myCommunity = res.data.find(c => c.trainer?._id === trainer._id);
         if (myCommunity) {
@@ -36,7 +36,7 @@ const TrainerCommunity = () => {
     }
 
     try {
-      const res = await axios.put(`${process.env.REACT_APP_API_URL}communities/${communityId}/add-challenge`, {
+      const res = await axios.put(`${process.env.REACT_APP_API_URL}/communities/${communityId}/add-challenge`, {
         title, description, duration
       });
 
@@ -53,7 +53,7 @@ const TrainerCommunity = () => {
 
   const handleDeleteChallenge = async (titleToDelete) => {
     try {
-      const res = await axios.put(`${process.env.REACT_APP_API_URL}communities/${communityId}/remove-challenge`, {
+      const res = await axios.put(`${process.env.REACT_APP_API_URL}/communities/${communityId}/remove-challenge`, {
         title: titleToDelete
       });
 
